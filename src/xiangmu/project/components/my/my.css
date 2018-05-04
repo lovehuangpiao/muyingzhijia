@@ -1,3 +1,16 @@
 html,body{height: 100%;}
-#my{height: 100%;display: flex;flex-direction: column;}
-#my{height: 1.8rem;background: #FF6100;}
+#my{height: 100%;display: flex;flex-direction: column;background:#F3F3F3;}
+#my .tou{height: 1.8rem;background: #FF6100;margin-bottom:0.266667rem;}
+#my .tou .tx{font-size: 1.12rem;color:#fff;margin-left: 0.266667rem;line-height: 1.8rem;float:left;}
+#my .tou .hui{font-size: 0.186667rem;color:#fff;margin-top: 0.64rem;margin-left: 0.346667rem;float:left;}
+
+#my .ding{height: 1.653333rem;background: #fff;margin-bottom: 0.24rem;}
+#my .ding .dd{height: 0.64rem;border-bottom: 1px solid #F2F2F2;margin-left: 0.213333rem;font-size: 0.24rem;line-height: 0.64rem;}
+#my .ding .dd .dan{font-size: 0.186667rem;}
+#my .ding .huo{height: 1.013333rem;margin-left: 0.213333rem;display:flex;flex-direction: row;justify-content: space-between;}
+#my .ding .huo li{flex:1;text-align: center;position: relative;}
+#my .ding .huo li i{font-size: 0.4rem;position:absolute;left:0.266667rem;top:0.133333rem;}
+#my .ding .huo li span{font-size: 0.16rem;position:absolute;left:0.226667rem;top:0.546667rem;}
+
+#my .guan{height: 3.24rem;display:flex;flex-direction: column;background:#fff;}
+#my .guan li{flex:1;font-size: 0.213333rem;margin-left: 0.213333rem;border-bottom: 1px solid #F3F3F3;}

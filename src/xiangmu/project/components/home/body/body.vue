@@ -17,8 +17,9 @@
             <span class="zhanghao">购物车</span>
         </router-link>
 
-        <router-link to="my">
-            <p class="iconfont icon-zhanghao" ></p>
+        <router-link to="/my">
+
+            <p class="iconfont icon-zhanghao"  @click="token"></p>
 
             <span>账号</span>
         </router-link>
@@ -29,5 +30,13 @@
     import shouyes from "./body.css";
     import http from '../../../../pei-api/utils/httpclient.js';
     export default {
+
+        methods:{
+            token(){
+                http.get('user').then((res) => {
+                    console.log(res);
+                })
+            }
+        }
     }
 </script>

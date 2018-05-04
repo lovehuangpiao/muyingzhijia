@@ -1,8 +1,32 @@
 <template>
     <div id="my">
         <div class="tou">
-            <i class=""></i>
+            <div class="tx iconfont icon-unie64d"></div>
+            <div class="hui">
+                <p>Hi <span></span></p>
+                <p>普通会员</p>
+            </div>
         </div>
+        <div class="ding">
+            <p class="dd">
+                <i class="dan iconfont icon-dingdan"></i>
+                <span>我的订单</span>
+            </p>
+            <ul class="huo">
+                <li><i class="iconfont icon-fukuanfangshi"></i><span>待付款</span></li>
+                <li><i class="iconfont icon-daifahuo"></i><span>待发货</span></li>
+                <li><i class="iconfont icon-icon3"></i><span>待收货</span></li>
+                <li><i class="iconfont icon-xin"></i><span>已完成</span></li>
+                <li><i class="iconfont icon-icon5"></i><span>&nbsp;退货</span></li>
+            </ul>
+        </div>
+        <ul class="guan">
+            <li><i></i><span>抵扣券</span><strong></strong></li>
+            <li><i></i><span>我的收藏</span><strong></strong></li>
+            <li><i></i><span>地址管理</span><strong></strong></li>
+            <li><i></i><span>账户设置</span><strong></strong></li>
+            <li><i></i><span>我的团</span><strong></strong></li>
+        </ul>
         <bodyComponent></bodyComponent>
     </div>
 </template>
@@ -10,12 +34,24 @@
 <script type="text/javascript">
     import "./my.css"
     import bodyComponent from '../home/body/body.vue';
+    import http from '../../../pei-api/utils/httpclient.js';
+    // import http from '../../../pei-api/utils/httpclient.js';
     export default{
+        data(){
+            return{
+                username:''
+            }
+        },
         components:{
             bodyComponent
         },
-        methods:{
-
+        mounted(){
+            http.post('getStatus',{}).then((res) => {
+                if(res.status){
+                    let username = window.localStorage.getItem('username');
+                    this.username = username;
+                }
+            })
         }
     }
 </script>

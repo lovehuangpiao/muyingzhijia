@@ -63,15 +63,16 @@
                     var arr = item.split('=');
                     goods[arr[0]] = arr[1];
                 });
-                console.log(goods);
+                // console.log(goods);
                 $(".car").on("click",function(){
                     let data = {
                         Id:goods.id,
                         SubjectName:goods.name,
                         PictureUrl:goods.img,
                         SetDiscount:goods.price,
-                        qty:$(this).prev().children()[1].value
+                        qty:$(this).parent().prev(".shuru").children()[1].value
                     };
+                    console.log($(this).parent().prev(".shuru").children()[1].value)
                     fetch('http://localhost:88/insertcardata',{
                         method:"POST",
                         body:JSON.stringify(data),

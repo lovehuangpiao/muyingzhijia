@@ -16,15 +16,15 @@
                     <label class="input-label" :class="{active: item.is_selected}" @click="select_one(index)"></label>
                 </div>
                 <div class="center">
-                    <img :src="item.img" alt=""  class="img"/>
-                    <p class="good_name">{{item.goodsname}}</p>
+                    <img :src="item.PictureUrl" alt=""  class="img"/>
+                    <p class="good_name">{{item.SubjectName}}</p>
                     <div>
                         <span class="number_sub" @click="sub(index)">-</span>
-                        <input type="number" class="car_number" readonly="readonly" :value="item.num"/>
+                        <input type="number" class="car_number" readonly="readonly" :value="Number(item.qty)"/>
                         <span class="number_add" @click="add(index)">+</span>
                     </div>
                 </div>
-                <span>￥{{item.price}}</span>
+                <span>￥{{Number(item.SetDiscount)}}</span>
             </li>
             <li class="car_footer">
                 <span>小计：<em>￥{{totalPrice}}</em></span>
@@ -117,8 +117,8 @@
                     for (let i = 0; i < this.good_list.length; i++) {
                         let _d = this.good_list[i];
                         if(_d.is_selected){
-                            this.totalPrice += _d['price'] * _d['num'];
-                            this.totalNum += _d['num'];
+                            this.totalPrice += _d['SetDiscount'] * _d['qty'];
+                            this.totalNum += _d['qty'];
                             good += 1;
                             if(good == this.good_list.length){
                                 this.selected_all = true;
@@ -214,7 +214,7 @@
                         console.log(666);
                         return [];
                     }else{
-                        this.good_list = res.data.data.data;
+                        this.good_list = res.data.data;
                         console.log(this.good_list);
                     }
 
