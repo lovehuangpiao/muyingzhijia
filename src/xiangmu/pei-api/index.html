@@ -312,7 +312,8 @@
           return res.json();
         }).then(res => {
           // console.log(res);
-          this.dataarr = res.data;
+          todaySpec = res.data;
+          this.dataarr = res.data ;
         })
       },
       methods: {
