@@ -1,5 +1,5 @@
 html,body{height: 100%;}
-#my{height: 100%;display: flex;flex-direction: column;background:#F3F3F3;}
+#my{height: 100%;display: flex;flex-direction: column;background:#F3F3F3;overflow-x:hidden;overflow-y: auto;}
 #my .tou{height: 1.8rem;background: #FF6100;margin-bottom:0.266667rem;}
 #my .tou .tx{font-size: 1.12rem;color:#fff;margin-left: 0.266667rem;line-height: 1.8rem;float:left;}
 #my .tou .hui{font-size: 0.186667rem;color:#fff;margin-top: 0.64rem;margin-left: 0.346667rem;float:left;}
@@ -8,9 +8,13 @@ html,body{height: 100%;}
 #my .ding .dd{height: 0.64rem;border-bottom: 1px solid #F2F2F2;margin-left: 0.213333rem;font-size: 0.24rem;line-height: 0.64rem;}
 #my .ding .dd .dan{font-size: 0.186667rem;}
 #my .ding .huo{height: 1.013333rem;margin-left: 0.213333rem;display:flex;flex-direction: row;justify-content: space-between;}
-#my .ding .huo li{flex:1;text-align: center;position: relative;}
+#my .ding .huo li{flex:1;position: relative;}
 #my .ding .huo li i{font-size: 0.4rem;position:absolute;left:0.266667rem;top:0.133333rem;}
-#my .ding .huo li span{font-size: 0.16rem;position:absolute;left:0.226667rem;top:0.546667rem;}
+#my .ding .huo li span{font-size: 0.16rem;position:absolute;left:0.226667rem;top:0.546667rem;text-align: center;}
 
-#my .guan{height: 3.24rem;display:flex;flex-direction: column;background:#fff;}
-#my .guan li{flex:1;font-size: 0.213333rem;margin-left: 0.213333rem;border-bottom: 1px solid #F3F3F3;}
+#my .guan{height: 3.24rem;background:#fff;margin-bottom: 0.266667rem;}
+#my .guan li{height: 0.64rem;font-size: 0.213333rem;margin-left: 0.213333rem;border-bottom: 1px solid #F3F3F3;line-height: 0.64rem;position:relative;}
+#my .guan li i{margin-right: 0.106667rem;font-size: 0.213333rem;}
+#my .guan li strong{position:absolute;right:0;top:0;margin-right: 0.08rem;}
+
+#my .tui{height: 0.64rem;background:#fff;margin-bottom: 0.106667rem;text-align: center;line-height: 0.64rem;font-size: 0.213333rem;color:black;}

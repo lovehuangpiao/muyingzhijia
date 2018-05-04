@@ -8,7 +8,9 @@
     text-align: center;
     line-height: 0.72rem;
     font-size: 0.2rem;
+    position:relative;
 }
+.car_header li .i1{font-size: 0.32rem;color:#fff;line-height: 0.693333rem;position:absolute;left:0.133333rem;top:1px;}
 .car_header li:nth-child(2){flex:60%;font-size: 0.3rem;}
 .car_header .redact span{
     display:inline-block;

@@ -21,12 +21,17 @@
             </ul>
         </div>
         <ul class="guan">
-            <li><i></i><span>抵扣券</span><strong></strong></li>
-            <li><i></i><span>我的收藏</span><strong></strong></li>
-            <li><i></i><span>地址管理</span><strong></strong></li>
-            <li><i></i><span>账户设置</span><strong></strong></li>
-            <li><i></i><span>我的团</span><strong></strong></li>
+            <li><i class="iconfont icon-daishiyongdikouquan"></i><span>抵扣券</span><strong class="iconfont icon-xiangyoujiantou"></strong></li>
+            <li><i class="iconfont icon-ego-favoritefull"></i><span>我的收藏</span><strong class="iconfont icon-xiangyoujiantou"></strong></li>
+            <li><i class="iconfont icon-dizhi"></i><span>地址管理</span><strong class="iconfont icon-xiangyoujiantou"></strong></li>
+            <li><i class="iconfont icon-shezhi"></i><span>账户设置</span><strong class="iconfont icon-xiangyoujiantou"></strong></li>
+            <li><i class="iconfont icon-wodetuangou"></i><span>我的团</span><strong class="iconfont icon-xiangyoujiantou"></strong></li>
         </ul>
+        <router-link to="/login">
+            <div class="tui">
+                退出当前账户
+            </div>
+        </router-link>
         <bodyComponent></bodyComponent>
     </div>
 </template>

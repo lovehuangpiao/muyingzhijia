@@ -1,7 +1,7 @@
 <template>
     <div style="display:flex;flex-direction:column;position:relative;height:100%;">
         <ul class="car_header">
-            <li @click="back">&lt;</li>
+            <li @click="back"><i class="i1 iconfont icon-xiangzuojiantou"></i></li>
             <li>购物车</li>
             <li class="redact" ><span @click="redact">{{text}}</span></li>
         </ul>
@@ -16,7 +16,7 @@
                     <label class="input-label" :class="{active: item.is_selected}" @click="select_one(index)"></label>
                 </div>
                 <div class="center">
-                    <img :src="item.PictureUrl" alt=""  class="img"/>
+                    <img :src=item.PictureUrl alt=""  class="img"/>
                     <p class="good_name">{{item.SubjectName}}</p>
                     <div>
                         <span class="number_sub" @click="sub(index)">-</span>
@@ -155,14 +155,30 @@
                 },
                 /*减*/
                 sub(index) {
-                    if(this.good_list[index].num <= 1) return false;
-                    this.good_list[index].num --;
+                    if(this.good_list[index].qty <= 1) return false;
+                    this.good_list[index].qty --;
                     this.getTotal();
+                    console.log(this.good_list[index].qty)
                 },
                 /*加*/
                 add(index) {
-                    this.good_list[index].num ++;
+                    let aa = this.good_list[index].qty ++;
                     this.getTotal();
+                    let data = {
+                        // Id:this.good_list[index].id,
+                        // SubjectName:this.good_list[index].name,
+                        // PictureUrl:this.good_list[index].img,
+                        // SetDiscount:this.good_list[index].price,
+                        qty:aa
+                    };
+                    fetch('http://localhost:88/insertcardata',{
+                        method:"POST",
+                        body:JSON.stringify(data),
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                        }
+                    });
                 },
                 redact(){
                     if(this.text == "编辑"){
