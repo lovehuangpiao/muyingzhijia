@@ -18,7 +18,7 @@ module.exports = {
             return apiReulst(false, error);
         }
     },
-    //insert('user',"[{name:"kimpee",age:16}]")
+    //eg:insert('user',"[{name:"kimpee",age:16}]")
     async insert(_collection,dataarr=[]){
       try{
         let items = await db.collection(_collection).insertMany(dataarr);
