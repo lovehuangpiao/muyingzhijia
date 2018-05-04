@@ -1,23 +1,21 @@
 <template>
-    <div>
-        <h1>个人中心</h1>
+    <div id="my">
+        <div class="tou">
+            <i class=""></i>
+        </div>
         <bodyComponent></bodyComponent>
     </div>
 </template>
 
 <script type="text/javascript">
+    import "./my.css"
     import bodyComponent from '../home/body/body.vue';
     export default{
         components:{
             bodyComponent
         },
         methods:{
-            token(){
-                /*if(){
 
-                }*/
-                console.log(window.localStorage.getItem('token'))
-            }
         }
     }
 </script>

@@ -22,7 +22,9 @@
                 <input type="text" value="1" calss="inp"/>
                 <i class="jia">+</i>
             </div>
-            <span class="car">加入购物车</span>
+            <router-link to="car">
+                <span class="car">加入购物车</span>
+            </router-link>
         </div>
         <back></back>
     </div>

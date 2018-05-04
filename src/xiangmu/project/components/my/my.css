@@ -1,0 +1,3 @@
+html,body{height: 100%;}
+#my{height: 100%;display: flex;flex-direction: column;}
+#my{height: 1.8rem;background: #FF6100;}
