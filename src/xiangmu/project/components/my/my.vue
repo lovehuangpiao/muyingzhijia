@@ -3,7 +3,7 @@
         <div class="tou">
             <div class="tx iconfont icon-unie64d"></div>
             <div class="hui">
-                <p>Hi <span></span></p>
+                <p>Hi <span>{{username}}</span></p>
                 <p>普通会员</p>
             </div>
         </div>

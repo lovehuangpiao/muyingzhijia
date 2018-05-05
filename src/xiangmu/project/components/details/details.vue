@@ -55,7 +55,7 @@
                 $(".inp").on("input",function(){
                     $(this)[0].value
                 })
-                var params = decodeURI(location.hash.slice(10));
+                var params = decodeURIComponent(location.hash.slice(10));
                 console.log(params);
                 var  goods = {}
                 params = params.split('&');
@@ -65,13 +65,17 @@
                 });
                 // console.log(goods);
                 $(".car").on("click",function(){
+                    let user = window.localStorage.getItem("username");
+                    console.log(user)
                     let data = {
-                        Id:goods.id,
+                        username:user,
+                        Id:parseInt(goods.id),
                         SubjectName:goods.name,
                         PictureUrl:goods.img,
                         SetDiscount:goods.price,
-                        qty:$(this).parent().prev(".shuru").children()[1].value
+                        qty:parseInt($(this).parent().prev(".shuru").children()[1].value)
                     };
+                    console.log(goods.id)
                     console.log($(this).parent().prev(".shuru").children()[1].value)
                     fetch('http://localhost:88/insertcardata',{
                         method:"POST",

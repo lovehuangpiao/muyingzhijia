@@ -16,7 +16,7 @@
                     <label class="input-label" :class="{active: item.is_selected}" @click="select_one(index)"></label>
                 </div>
                 <div class="center">
-                    <img :src=item.PictureUrl alt=""  class="img"/>
+                    <img :src="item.PictureUrl" alt=""  class="img"/>
                     <p class="good_name">{{item.SubjectName}}</p>
                     <div>
                         <span class="number_sub" @click="sub(index)">-</span>
@@ -27,13 +27,13 @@
                 <span>￥{{Number(item.SetDiscount)}}</span>
             </li>
             <li class="car_footer">
-                <span>小计：<em>￥{{totalPrice}}</em></span>
+                <span>小计：<em>￥{{totalPrice.toFixed(2)}}</em></span>
             </li>
         </ul>
         <div class="title bottom_fixed">
             <label for="foot-check" class="input-label" :class="{active: selected_all}" @click="slect_all"></label>
             <h5 style="color:#929292;">全选</h5>
-            <span>总计：<em>￥{{totalPrice}}</em></span>
+            <span>总计：<em>￥{{totalPrice.toFixed(2)}}</em></span>
             <p class="btn" @click="btn">{{btn_txt}}</p>
         </div>
         <bodyComponent class="test"></bodyComponent>
@@ -99,16 +99,16 @@
             },
             
             /*监听数据*/
-            watch: {
-                'good_list': {
-                    /*回调函数*/
-                    handler: function (val, oldVal) {
-                        console.log(val);
-                        return val;
-                    },
-                    deep: true //对象内部的属性监听，即深度监听  
-                }
-            },
+            // watch: {
+            //     'good_list': {
+            //         /*回调函数*/
+            //         handler: function (val, oldVal) {
+            //             console.log(val);
+            //             return val;
+            //         },
+            //         deep: true //对象内部的属性监听，即深度监听  
+            //     }
+            // },
             methods: {
                 getTotal() {
                     this.totalPrice = 0;
@@ -158,18 +158,38 @@
                     if(this.good_list[index].qty <= 1) return false;
                     this.good_list[index].qty --;
                     this.getTotal();
-                    console.log(this.good_list[index].qty)
+                    console.log(this.good_list[index].qty);
+                     let username = window.localStorage.getItem("username");
+                    let data = {
+                        username:username,
+                        Id:this.good_list[index].Id,
+                        SubjectName:this.good_list[index].SubjectName,
+                        PictureUrl:this.good_list[index].PictureUrl,
+                        SetDiscount:this.good_list[index].SetDiscount,
+                        qty:-1
+                    };
+                    fetch('http://localhost:88/insertcardata',{
+                        method:"POST",
+                        body:JSON.stringify(data),
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                        }
+                    });
                 },
                 /*加*/
                 add(index) {
                     let aa = this.good_list[index].qty ++;
                     this.getTotal();
+                    console.log(aa);
+                    let username = window.localStorage.getItem("username");
                     let data = {
-                        // Id:this.good_list[index].id,
-                        // SubjectName:this.good_list[index].name,
-                        // PictureUrl:this.good_list[index].img,
-                        // SetDiscount:this.good_list[index].price,
-                        qty:aa
+                        username:username,
+                        Id:this.good_list[index].Id,
+                        SubjectName:this.good_list[index].SubjectName,
+                        PictureUrl:this.good_list[index].PictureUrl,
+                        SetDiscount:this.good_list[index].SetDiscount,
+                        qty:1
                     };
                     fetch('http://localhost:88/insertcardata',{
                         method:"POST",
@@ -204,11 +224,11 @@
                         for(let i = 0; i<this.good_list.length; i++){
                             let _del = this.good_list[i];
                             if(_del.is_selected){
-                                console.log(_del.goodsid);
+                                console.log(_del.Id);
 
-                                this.delGoods(_del.goodsid);
+                                this.delGoods(_del.Id);
                                 this.good_list.splice(i,1);
-                                console.log(typeof _del.goodsid)
+                                console.log(typeof _del.Id)
                             }
                         }
                     }
@@ -217,23 +237,25 @@
                 back(){
                     window.history.back();
                 },
-                delGoods(goodsid){
-                    http.get("deletecardata/"+goodsid).then((res) => {
+                delGoods(Id){
+                    let username = window.localStorage.getItem("username");
+                    console.log(Id);
+                    console.log(username)
+                    http.get("deletecardata/"+Id+"/"+username).then((res) => {
                         console.log(res);
                     })
                 }
             },
             mounted(){
-                http.get("cardata").then((res) => {
+                let username = window.localStorage.getItem("username");
+                http.get("cardata/"+username).then((res) => {
                     console.log(res);
                     if(res.data.data.status == false){
                         console.log(666);
                         return [];
                     }else{
                         this.good_list = res.data.data;
-                        console.log(this.good_list);
                     }
-
                 })
             },
 
