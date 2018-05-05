@@ -312,15 +312,15 @@
           return res.json();
         }).then(res => {
           // console.log(res);
-          todaySpec = res.data;
-          this.dataarr = res.data ;
+          todaySpec = res.data.data;
+          this.dataarr = res.data.data ;
         })
       },
       methods: {
         insert() {},
         deletedata(event) {
           let idx = event.target.getAttribute("idx");
-          console.log(this.dataarr[idx].Id);
+          console.log(this.dataarr[idx]);
           fetch('http://localhost:88/deletedata/' + this.dataarr[idx].Id).then((res) => {
             return res.json();
           }, err => {
