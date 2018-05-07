@@ -114,6 +114,11 @@
       opacity: 0;
     }
 
+  .list-enter{opacity: 0; transform: translateX(300px);} 
+  .list-enter-active{transition: all .5s;} 
+  .list-leave-active{transition:
+  all .5s; opacity: 0; transform: translateX(-300px);}
+
   </style>
 </head>
 
@@ -289,9 +294,8 @@
                     <th>Ctrl</th>
                     </tr>
                 </tbody>
-                <transition name="fade">
-                  <tbody>
-                    <tr v-if="show" v-for="(item,index) in dataarr" :data-idx="index" :key="item.id">
+                <tbody name="list" is = "transition-group">
+                    <tr v-for="(item,index) in dataarr" v-bind:key="item.Id" :data-idx="index" >
                       <td>{{item.Id}}</td>
                       <td>{{item.SubjectName}}</td>
                       <td>{{item.SujectDesc}}</td>
@@ -300,27 +304,26 @@
                       <td>{{item.OriDiscount}}</td>
                       <td ><button :idx="index" @click="deletedata($event)">删除</button></td>
                     </tr>
-                  </tbody>
-                </transition>
+                </tbody>
               </table>`,
       data: () => ({
         dataarr: todaySpec,
-        show: true
+        // show: true
       }),
       mounted() {
         fetch('http://localhost:88/todayspecial').then(res => {
           return res.json();
         }).then(res => {
-          // console.log(res);
-          todaySpec = res.data;
-          this.dataarr = res.data ;
+          console.log(res);
+          todaySpec = res.data.data;
+          this.dataarr = res.data.data ;
         })
       },
       methods: {
         insert() {},
         deletedata(event) {
           let idx = event.target.getAttribute("idx");
-          console.log(this.dataarr[idx].Id);
+          console.log(this.dataarr[idx]);
           fetch('http://localhost:88/deletedata/' + this.dataarr[idx].Id).then((res) => {
             return res.json();
           }, err => {

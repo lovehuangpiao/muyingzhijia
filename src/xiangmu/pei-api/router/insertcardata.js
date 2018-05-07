@@ -20,6 +20,7 @@ module.exports = {
                 backdata = await db.update('cardata', {Id:parseInt(req.body.Id)},req.body);
                 console.log('更新');
                 break;
+                
               }
             }
           }
